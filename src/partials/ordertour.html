@@ -1,0 +1,27 @@
+<section class="order-section">
+    <div class = "order-slider" id="slider">
+        <div id="image-container" class="slider__image-container">
+            <img class="slider__image" src="./images/ukraine.jpg" alt="Ukraine" loading="lazy">
+        </div>
+        <div class="slider__overlay-description"><p class="description" id="country-description"></p></div>
+        <div class="slider__title-btns-container">
+            <h2 class = "slider__image-title" id="image-title"></h2>
+            <div class = "slider__btn-container" id="slider-btn-container">
+                    <!-- <button class="slider__btn"></button> -->
+            </div>
+        </div>
+    </div>
+        <button class = "tour-btn" type="button" id="start-btn">
+            Buy tour
+        </button>
+        <form action="submit" class="order-form is-hidden make-absolute" id="form-order">
+            <p id="text-with-current-money-input"></p>
+            <input type="number" class="order-form__input-current" id="current-money-input" placeholder="Throw me some numbers">
+            <p>And your current location</p>
+            <input type="text" class="order-form__input-current" id="current-location" placeholder="Type your country">
+            <button class="order-form__submit" id="submit-money" type="submit">Next</button>
+        </form>
+        <ul class="available-country-list" id="country-list">
+
+        </ul>
+</section>

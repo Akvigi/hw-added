@@ -1,0 +1,66 @@
+.order-section{
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    &__input-current {
+        background-color: transparent;
+        width: 200px;
+        padding: 2px 0 0 5px;
+        font-size: 15px;
+        margin: 10px 0;
+        border: 1px gray solid;
+    }
+    &__submit {
+        font-size: 15px;
+        border: 1px rgb(102, 211, 102) solid;
+        padding: 5px 15px;
+        background-color: transparent;
+    }
+}
+
+.tour-btn {
+    width: 150px;
+    font-size: 30px;
+    padding: 10px;
+    border: 2px blue solid;
+    border-radius: 14px;
+    color: black;
+    background-color: transparent;
+}
+
+.available-country-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 900px;
+}
+
+.country-list{
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        border: 1px black solid;
+        font-size: large;
+    }
+    &__btn {
+        font-size: 25px;
+        padding: 5px 20px;
+        border: 2px black solid;
+        margin-top: 30px;
+    }
+}

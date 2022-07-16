@@ -48,6 +48,12 @@
     }
 }
 
+.header__login-btns-container {
+    display: flex;
+    position: relative;
+    width: 70px;
+}
+
 .header__login-btn {
     color: var(--black-color);
     font-size: 20px;

@@ -3,8 +3,8 @@ const logoutBtn = document.querySelector('#logout-btn');
 const modalLogin = document.querySelector('.modal-login');
 const close = document.querySelector('#modal-close');
 const submitLoginBtn = document.querySelector('#submit-login');
-const form = modalLogin.children[0];
-const { username, password } = form;
+const formLogin = modalLogin.children[0];
+const { username, password } = formLogin;
 
 function onLogin() {
   modalLogin.classList.remove('is-hidden');
@@ -16,6 +16,8 @@ function onClose() {
 
 function onLogout() {
   loginBtn.classList.remove('is-hidden');
+  loginBtn.classList.remove('make-absolute');
+  logoutBtn.classList.add('make-absolute');
   logoutBtn.classList.add('is-hidden');
   localStorage.removeItem('USERNAME');
   localStorage.removeItem('PASSWORD');
@@ -24,7 +26,9 @@ function onLogout() {
 
 function onSubmit(e) {
   e.preventDefault();
-  console.log(username.value, password.value);
+  if (username.value === ``) {
+    return alert('Please enter username');
+  }
   localStorage.setItem('USERNAME', username.value);
   localStorage.setItem('PASSWORD', password.value);
   username.value = '';
@@ -32,17 +36,21 @@ function onSubmit(e) {
   modalLogin.classList.add('is-hidden');
   loginBtn.classList.add('is-hidden');
   logoutBtn.classList.remove('is-hidden');
-  // loginBtn.removeEventListener(onLogin);
-  // loginBtn.addEventListener('click',
+  loginBtn.classList.add('make-absolute');
+  logoutBtn.classList.remove('make-absolute');
   alert(`Successfully logged in, thanks!`);
 }
 
-form.addEventListener('submit', onSubmit);
+formLogin.addEventListener('submit', onSubmit);
 loginBtn.addEventListener('click', onLogin);
 close.addEventListener('click', onClose);
 logoutBtn.addEventListener('click', onLogout);
 
-if (localStorage.getItem('USERNAME') !== '') {
+if (
+  localStorage.getItem('USERNAME') !== '' ||
+  localStorage.getItem('USERNAME') !== null ||
+  localStorage.getItem('USERNAME') !== undefined
+) {
   console.log(localStorage.getItem('USERNAME'));
   loginBtn.classList.add('is-hidden');
   logoutBtn.classList.remove('is-hidden');
