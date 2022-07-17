@@ -3,18 +3,43 @@
         <img class="pers-cabinet__photo" src="./images/logo.jpg" alt="photo">
         <div class="pers-cabinet__info">
             <h2>Profile</h2>
-            <p id="cab-name"></p>
-            <form action="submit">
-                <p>If you want, you can change your username</p>
-                <input type="text">
-                <button type="submit">Submit</button>
-            </form>
-            <p id="cab-location"></p>
-            <form action="submit">
-                <p>If you want, you can enter your location</p>
-                <input type="text" name="" id="">
-                <button>Submit</button>
-            </form>
+            <div class="profile-info__name-container">
+                <p id="cab-name"></p>
+                <button class="profile-info__change-name-btn" 
+                type="button" id = "change-name">
+                    Change name
+                </button>
+                <form action="submit" 
+                class="change-name-form is-hidden make-absolute" 
+                id="form-change-name">
+                    <input type="text" placeholder="Enter name">
+                    <button class="change-name-form__btn" 
+                    type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="profile-info__location-container">
+                <p id="cab-location"></p>
+                <button class="profile-info__change-location-btn" 
+                type="button" id="change-location">
+                    Change location
+                </button>
+                <form class="change-form-location is-hidden make-absolute"
+                 action="submit" id="form-change-location">
+                    <input type="text" id="" placeholder="Enter location">
+                    <button class="change-form-location__btn"
+                    type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="profile-info__money-container">
+                <p id="cab-money"></p>
+                <button class="profile-info__change-money-btn" type="button" id="change-money">
+                    Change money
+                </button>
+                <form class="change-form-money is-hidden make-absolute" action="submit" id="form-change-money">
+                    <input type="text" id="" placeholder="Enter your current money">
+                    <button class="change-form-money__btn" type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="pers-cabinet__ordered-section">

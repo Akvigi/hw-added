@@ -28,17 +28,44 @@
         margin-left: 20px;
         height: 200px;
         display: flex;
-        justify-content: center;
         flex-direction: column;
     }
 }
 
 .profile-info {
     &__container {
-        
+
     }
     &__photo {
 
+    }
+    &__name-container,
+    &__location-container,
+    &__money-container {
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+        padding: 10px 0;
+    }
+    &__change-name-btn,
+    &__change-location-btn,&__change-money-btn {
+        padding: 2px 6px;
+        border: 1px black solid;
+        box-sizing: border-box;
+    }
+}
+
+.change-name-form,
+.change-form-location,
+.change-form-money {
+    display: flex;
+    flex-direction: row;
+    &__btn {
+        border: 1px black solid;
+        margin-left: 10px;
+        padding: 2px 4px;
     }
 }
 
