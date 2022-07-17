@@ -56,7 +56,32 @@ function updateLocation(e) {
   changeLocationForm.children[0].value = '';
 }
 
+function openUpdateMoneyForm(e) {
+  e.preventDefault();
+  changeMoneyBtn.classList.add('is-hidden');
+  changeMoneyBtn.classList.add('make-absolute');
+  changeMoneyForm.classList.remove('is-hidden');
+  changeMoneyForm.classList.remove('make-absolute');
+  cabinetMoney.innerHTML = '';
+}
+
+function updateMoney(e) {
+  e.preventDefault();
+  const inputValue = changeMoneyForm.children[0].value;
+  localStorage.setItem('USERLOCATION', inputValue);
+  cabinetMoney.innerHTML = inputValue;
+  changeMoneyForm.classList.add('is-hidden');
+  changeMoneyForm.classList.add('make-absolute');
+  changeMoneyBtn.classList.remove('is-hidden');
+  changeMoneyBtn.classList.remove('make-absolute');
+  changeMoneyForm.children[0].value = '';
+}
+
 changeNameBtn.addEventListener('click', openUpdateNameForm);
-changeLocationBtn.addEventListener('click', openUpdateLocationForm);
 changeNameForm.addEventListener('submit', updateName);
+
+changeLocationBtn.addEventListener('click', openUpdateLocationForm);
 changeLocationForm.addEventListener('submit', updateLocation);
+
+changeMoneyBtn.addEventListener('click', openUpdateMoneyForm);
+changeMoneyForm.addEventListener('submit', updateMoney);
