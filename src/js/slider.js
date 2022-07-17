@@ -7,6 +7,7 @@ const sliderImgTitle = document.querySelector('#image-title');
 const sliderImgContainer = document.querySelector('#image-container');
 const countryDescripion = document.querySelector('#country-description');
 const arrayOfMarkupIMG = [];
+[];
 let stringMarkupIMG;
 // async function createMrkp() {
 //   countries.map(async country => {

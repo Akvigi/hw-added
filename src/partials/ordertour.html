@@ -1,5 +1,6 @@
-<section class="order-section">
+<section class="order-section" id="order-section">
     <div class = "order-slider" id="slider">
+        <h1 class="slider__title">Available country tours</h1> 
         <div id="image-container" class="slider__image-container">
             <img class="slider__image" src="./images/ukraine.jpg" alt="Ukraine" loading="lazy">
         </div>
@@ -17,11 +18,19 @@
         <form action="submit" class="order-form is-hidden make-absolute" id="form-order">
             <p id="text-with-current-money-input"></p>
             <input type="number" class="order-form__input-current" id="current-money-input" placeholder="Throw me some numbers">
-            <p>And your current location</p>
+            <p>And your current location(optional)</p>
             <input type="text" class="order-form__input-current" id="current-location" placeholder="Type your country">
             <button class="order-form__submit" id="submit-money" type="submit">Next</button>
         </form>
         <ul class="available-country-list" id="country-list">
-
         </ul>
+        <form class = "ordertour-confirmation__container is-hidden make-absolute" id="order-form-confirmation">
+            <h2 class="ordertour-confirmation__title"></h2>
+            <p class="ordertour-confirmation__price"></p>
+
+            <p class="ordertour-confirmation__text">Pick start of the trip</p>
+            <input class="ordertour-confirmation__time-picker" type="text" id="datetime-picker">
+            
+            <button class="ordertour-confirmation__button-submit" type="submit">Trip</button>
+        </form>
 </section>
