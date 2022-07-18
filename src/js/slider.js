@@ -19,13 +19,6 @@ const globalStyle = document.querySelector('style');
 //   sliderImgContainer.innerHTML = stringMarkupIMG;
 // }
 
-export function changeSliderMarkup(arrayID) {
-  sliderImgTitle.innerHTML = countries[arrayID].name;
-  countryDescripion.innerHTML = countries[arrayID].description;
-  countryDescripionPrice.innerHTML = countries[arrayID].price;
-  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[arrayID].src}" alt="${countries[arrayID].name}">`;
-}
-
 function startSlider() {
   const markupForSliderBtns = countries
     .map(element => {
@@ -48,9 +41,9 @@ function changeSlide(e) {
   const btn = e.target;
   const activeBtn = document.querySelector('.slider__btn-active');
   activeBtn.classList.remove('slider__btn-active');
+  btn.classList.add('slider__btn-active');
   const arrayNumber = Number(btn.id) - 1;
   changeSliderMarkup(arrayNumber);
-  btn.classList.add('slider__btn-active');
 }
 
 function openDescription() {
@@ -73,3 +66,16 @@ function closeDescription() {
 startSlider();
 sliderBtnContainer.addEventListener('click', changeSlide);
 sliderBtnDescription.addEventListener('click', openDescription);
+
+export function changeSliderMarkup(arrayID) {
+  sliderImgTitle.innerHTML = countries[arrayID].name;
+  countryDescripion.innerHTML = countries[arrayID].description;
+  countryDescripionPrice.innerHTML = countries[arrayID].price;
+  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[arrayID].src}" alt="${countries[arrayID].name}">`;
+}
+
+export function changeActiveButton(arrayID) {
+  const activeBtn = document.querySelector('.slider__btn-active');
+  activeBtn.classList.remove('slider__btn-active');
+  sliderBtnContainer.children[arrayID].classList.add('slider__btn-active');
+}

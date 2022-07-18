@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { countries } from './country-array';
-import { changeSliderMarkup } from './slider';
+import { changeSliderMarkup, changeActiveButton } from './slider';
 // Замовлення турів:
 // Пишемо реєстрацію користувача за допомогою prompt.  Окремо логін та пароль.
 // Валідацію не потрібно робити.
@@ -132,6 +132,7 @@ function pickCountry(e) {
   formOrderConfirmation.children[0].innerHTML = countries[countryID - 1].name;
   formOrderConfirmation.children[1].innerHTML = countries[countryID - 1].price;
   changeSliderMarkup(countryID - 1);
+  changeActiveButton(countryID - 1);
 }
 
 flatpickr(inputTime, {
