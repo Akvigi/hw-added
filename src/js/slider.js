@@ -38,12 +38,12 @@ function startSlider() {
 
 function changeSlide(e) {
   e.preventDefault();
-  const btn = e.target;
-  const activeBtn = document.querySelector('.slider__btn-active');
-  activeBtn.classList.remove('slider__btn-active');
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
+  const btn = e.target;
+  const activeBtn = document.querySelector('.slider__btn-active');
+  activeBtn.classList.remove('slider__btn-active');
   const arrayNumber = Number(btn.id) - 1;
   sliderImgTitle.innerHTML = countries[arrayNumber].name;
   countryDescripion.innerHTML = countries[arrayNumber].description;
