@@ -34,7 +34,7 @@ function startSlider() {
   sliderBtnContainer.innerHTML = markupForSliderBtns;
   sliderImgTitle.innerHTML = countries[0].name;
   countryDescripion.innerHTML = countries[0].description;
-  globalStyle.innerHTML = '.slider__image {opacity: 1;}';
+  // globalStyle.innerHTML = '.slider__image {opacity: 1;}';
 }
 
 function changeSlide(e) {

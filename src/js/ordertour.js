@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import ukraine from '../images/ukraine.jpg';
-import poland from '../images/poland.jpg';
+import poland from '../images/poland-photo.jpg';
 import croatia from '../images/croatia.jpg';
 import montenegro from '../images/montenegro.jpg';
 import france from '../images/france.jpg';
