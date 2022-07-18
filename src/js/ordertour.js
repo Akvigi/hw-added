@@ -21,7 +21,11 @@ import usa from '../images/usa.jpg';
 const countryList = document.querySelector('#country-list');
 const startOrderBtn = document.querySelector('#start-btn');
 const formOrder = document.querySelector('#form-order');
-const textToUser = document.querySelector('#text-with-current-money-input');
+const textToUserMoney = document.querySelector(
+  '#text-with-current-money-input'
+);
+const textToUserLocation = document.querySelector('#text-location-label');
+// text-location-label
 const inputMoney = formOrder.children[1];
 const inputCurrentLocation = formOrder.children[3];
 const inputTime = document.querySelector('#datetime-picker');
@@ -81,12 +85,10 @@ export const countries = [
 ];
 
 let userName;
-let userPass;
 let userLocation;
 let userCredits;
-let userCountry;
-let maxPrice;
 let markup;
+let availableCountries;
 
 function onStartOrder() {
   userName = localStorage.getItem('USERNAME');
@@ -97,25 +99,50 @@ function onStartOrder() {
   startOrderBtn.classList.add('make-absolute');
   formOrder.classList.remove('is-hidden');
   formOrder.classList.remove('make-absolute');
-  textToUser.innerHTML = `${userName}, please enter your current money`;
+  if (
+    localStorage.getItem('USERMONEY') !== '' &&
+    localStorage.getItem('USERMONEY') !== null
+  ) {
+    textToUserMoney.innerHTML = `${userName}, please enter your current money, if you want to update information`;
+  } else {
+    textToUserMoney.innerHTML = `${userName}, please enter your current money`;
+  }
+  if (
+    localStorage.getItem('USERLOCATION') !== '' &&
+    localStorage.getItem('USERLOCATION') !== null
+  ) {
+    textToUserLocation.innerHTML = `And you can enter your current location, if you want to update information`;
+  }
 }
 
-function submitMoney(e) {
-  e.preventDefault();
-  userCredits = inputMoney.value;
-  localStorage.setItem('USERMONEY', userCredits);
-  const availableCountries = countries.filter(
-    value => value.price <= userCredits
-  );
-  userLocation = inputCurrentLocation.value;
+function filterByMoney(input) {
   if (
-    localStorage.getItem('USERLOCATION') === '' ||
-    localStorage.getItem('USERLOCATION') === undefined ||
+    localStorage.getItem('USERMONEY') !== '' &&
+    localStorage.getItem('USERMONEY') !== null &&
+    input === ''
+  ) {
+    console.log(localStorage.getItem('USERMONEY'));
+    const storageMoney = localStorage.getItem('USERMONEY');
+    availableCountries = countries.filter(value => value.price <= storageMoney);
+  } else {
+    userCredits = input;
+    localStorage.setItem('USERMONEY', userCredits);
+    availableCountries = countries.filter(value => value.price <= userCredits);
+  }
+}
+
+function manageUserLocation(input) {
+  userLocation = input;
+  if (
+    localStorage.getItem('USERLOCATION') === '' &&
     localStorage.getItem('USERLOCATION') === null
   ) {
     localStorage.setItem('USERLOCATION', userLocation);
   }
-  markup = availableCountries
+}
+
+function createCountryCardsMarkup(array) {
+  markup = array
     .map(country => {
       if (country.name === localStorage.getItem('USERLOCATION')) {
         return '';
@@ -127,7 +154,13 @@ function submitMoney(e) {
               </li>`;
     })
     .join('');
-  console.log(markup);
+}
+
+function submitMoney(e) {
+  e.preventDefault();
+  filterByMoney(inputMoney.value);
+  manageUserLocation(inputCurrentLocation.value);
+  createCountryCardsMarkup(availableCountries);
   formOrder.classList.add('is-hidden');
   formOrder.classList.add('make-absolute');
   countryList.innerHTML = markup;
@@ -141,7 +174,6 @@ function pickCountry(e) {
   console.log(e.target.nodeName);
   const { target: buttonCountry } = e;
   const countryID = buttonCountry.dataset.id;
-  console.log(countryID);
   formOrderConfirmation.classList.remove('is-hidden');
   formOrderConfirmation.classList.remove('make-absolute');
   countryList.innerHTML = '';
@@ -161,12 +193,6 @@ flatpickr(inputTime, {
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     let currentDate = new Date();
-    if (currentDate > selectedDates[0]) {
-      startButton.setAttribute('disabled', true);
-      return Notiflix.Notify.failure('Please choose a date in the future');
-    }
-    startButton.removeAttribute('disabled');
-    startButton.addEventListener('click', () => {});
   },
 });
 

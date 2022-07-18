@@ -25,6 +25,8 @@ function onLogout() {
   cabinetBtn.classList.add('make-absolute');
   localStorage.removeItem('USERNAME');
   localStorage.removeItem('PASSWORD');
+  localStorage.removeItem('USERMONEY');
+  localStorage.removeItem('USERLOCATION');
   alert(`Successfully log out, good luck!`);
 }
 

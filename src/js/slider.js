@@ -7,6 +7,7 @@ const sliderBtnContainer = document.querySelector('#slider-btn-container');
 const sliderImgTitle = document.querySelector('#image-title');
 const sliderImgContainer = document.querySelector('#image-container');
 const countryDescripion = document.querySelector('#country-description');
+const countryDescripionPrice = document.querySelector('#overlay-price');
 const sliderBtnDescription = document.querySelector('#description-btn');
 const globalStyle = document.querySelector('style');
 
@@ -20,8 +21,14 @@ const globalStyle = document.querySelector('style');
 //   sliderImgContainer.innerHTML = stringMarkupIMG;
 // }
 
+function changeSliderMarkup(arrayID) {
+  sliderImgTitle.innerHTML = countries[arrayID].name;
+  countryDescripion.innerHTML = countries[arrayID].description;
+  countryDescripionPrice.innerHTML = countries[arrayID].price;
+  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[arrayID].src}" alt="${countries[arrayID].name}">`;
+}
+
 function startSlider() {
-  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
   const markupForSliderBtns = countries
     .map(element => {
       if (element.id === 1) {
@@ -32,9 +39,7 @@ function startSlider() {
     })
     .join('');
   sliderBtnContainer.innerHTML = markupForSliderBtns;
-  sliderImgTitle.innerHTML = countries[0].name;
-  countryDescripion.innerHTML = countries[0].description;
-  // globalStyle.innerHTML = '.slider__image {opacity: 1;}';
+  changeSliderMarkup(0);
 }
 
 function changeSlide(e) {
@@ -46,9 +51,7 @@ function changeSlide(e) {
   const activeBtn = document.querySelector('.slider__btn-active');
   activeBtn.classList.remove('slider__btn-active');
   const arrayNumber = Number(btn.id) - 1;
-  sliderImgTitle.innerHTML = countries[arrayNumber].name;
-  countryDescripion.innerHTML = countries[arrayNumber].description;
-  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[arrayNumber].src}" alt="${countries[arrayNumber].name}">`;
+  changeSliderMarkup(arrayNumber);
   btn.classList.add('slider__btn-active');
 }
 
@@ -65,6 +68,7 @@ function closeDescription() {
   globalStyle.innerHTML =
     '.slider__overlay-description {}' + '.slider__btn-description {}';
   sliderBtnDescription.innerHTML = 'Open description';
+  sliderBtnDescription.removeEventListener('click', closeDescription);
   sliderBtnDescription.addEventListener('click', openDescription);
 }
 

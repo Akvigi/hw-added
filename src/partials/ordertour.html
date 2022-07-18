@@ -6,6 +6,7 @@
         </div>
         <div class="slider__overlay-description">
             <p class="description" id="country-description"></p>
+            <p class="overlay-price">Price:<span id="overlay-price"></span></p>
         </div>
         <div class="slider__title-btns-container">
             <h2 class = "slider__image-title" id="image-title"></h2>
@@ -21,7 +22,7 @@
         <form action="submit" class="order-form is-hidden make-absolute" id="form-order">
             <p id="text-with-current-money-input"></p>
             <input type="number" class="order-form__input-current" id="current-money-input" placeholder="Throw me some numbers">
-            <p>And your current location(optional)</p>
+            <p id = "text-location-label">And your current location(optional)</p>
             <input type="text" class="order-form__input-current" id="current-location" placeholder="Type your country">
             <button class="order-form__submit" id="submit-money" type="submit">Next</button>
         </form>
