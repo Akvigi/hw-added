@@ -77,6 +77,22 @@ function updateMoney(e) {
   changeMoneyForm.children[0].value = '';
 }
 
+if (
+  localStorage.getItem('USERLOCATION') === '' ||
+  localStorage.getItem('USERLOCATION') === null
+) {
+  cabinetLocation.classList.add('make-absolute');
+  changeLocationBtn.innerHTML = 'Set current location';
+}
+
+if (
+  localStorage.getItem('USERMONEY') === '' ||
+  localStorage.getItem('USERMONEY') === null
+) {
+  cabinetMoney.classList.add('make-absolute');
+  changeMoneyBtn.innerHTML = 'Set current money';
+}
+
 changeNameBtn.addEventListener('click', openUpdateNameForm);
 changeNameForm.addEventListener('submit', updateName);
 

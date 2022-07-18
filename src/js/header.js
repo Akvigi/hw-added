@@ -9,7 +9,6 @@ const pageStatus = {
 };
 
 function openPersonalCabinet() {
-  //   if (localStorage.getItem('PAGE') === 'CABINET') return;
   localStorage.setItem('PAGE', 'CABINET');
   orderSection.classList.add('make-absolute');
   orderSection.classList.add('is-hidden');

@@ -1,6 +1,4 @@
-import { countries } from './ordertour';
-import { fetchImg, changeID } from './fetchIMG';
-// import * as images from './images';
+import { countries } from './country-array';
 
 const sliderContainer = document.querySelector('#slider');
 const sliderBtnContainer = document.querySelector('#slider-btn-container');

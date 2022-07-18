@@ -1,8 +1,10 @@
 // 1
 import './js/header';
 import './js/login';
+import './js/country-array';
 import './js/ordertour';
 import './js/slider';
+
 import './js/personalcabinet';
 // Домашка: "Delivery"
 // Ви пропонуєте користувачу список доступних ресторанів для замовлення їжі.
