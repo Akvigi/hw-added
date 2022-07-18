@@ -19,7 +19,7 @@ const globalStyle = document.querySelector('style');
 //   sliderImgContainer.innerHTML = stringMarkupIMG;
 // }
 
-function changeSliderMarkup(arrayID) {
+export function changeSliderMarkup(arrayID) {
   sliderImgTitle.innerHTML = countries[arrayID].name;
   countryDescripion.innerHTML = countries[arrayID].description;
   countryDescripionPrice.innerHTML = countries[arrayID].price;
@@ -41,7 +41,7 @@ function startSlider() {
 }
 
 function changeSlide(e) {
-  e.preventDefault();
+  // e.preventDefault();
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }

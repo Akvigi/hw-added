@@ -58,7 +58,6 @@ if (
   localStorage.getItem('USERNAME') !== '' &&
   localStorage.getItem('USERNAME') !== null
 ) {
-  console.log(localStorage.getItem('USERNAME'));
   loginBtn.classList.add('is-hidden');
   logoutBtn.classList.remove('is-hidden');
 }

@@ -1,6 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { countries } from './country-array';
+import { changeSliderMarkup } from './slider';
 // Замовлення турів:
 // Пишемо реєстрацію користувача за допомогою prompt.  Окремо логін та пароль.
 // Валідацію не потрібно робити.
@@ -65,7 +66,6 @@ function filterByMoney(input) {
     localStorage.getItem('USERMONEY') !== null &&
     input === ''
   ) {
-    console.log(localStorage.getItem('USERMONEY'));
     const storageMoney = localStorage.getItem('USERMONEY');
     availableCountries = countries.filter(value => value.price <= storageMoney);
   } else {
@@ -102,7 +102,11 @@ function createCountryCardsMarkup(array) {
 
 function submitMoney(e) {
   e.preventDefault();
-  if (inputMoney.value === '') {
+  if (
+    (localStorage.getItem('USERMONEY') === '' ||
+      localStorage.getItem('USERMONEY') === null) &&
+    inputMoney.value === ''
+  ) {
     return alert('Please enter a valid amount');
   }
   filterByMoney(inputMoney.value);
@@ -127,6 +131,7 @@ function pickCountry(e) {
   countryList.classList.add('make-absolute');
   formOrderConfirmation.children[0].innerHTML = countries[countryID - 1].name;
   formOrderConfirmation.children[1].innerHTML = countries[countryID - 1].price;
+  changeSliderMarkup(countryID - 1);
 }
 
 flatpickr(inputTime, {
