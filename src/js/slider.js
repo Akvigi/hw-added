@@ -1,36 +1,26 @@
 import { countries } from './ordertour';
 import { fetchImg, changeID } from './fetchIMG';
+// import * as images from './images';
 
 const sliderContainer = document.querySelector('#slider');
 const sliderBtnContainer = document.querySelector('#slider-btn-container');
 const sliderImgTitle = document.querySelector('#image-title');
 const sliderImgContainer = document.querySelector('#image-container');
 const countryDescripion = document.querySelector('#country-description');
-const arrayOfMarkupIMG = [];
-[];
+const activeBtn = document.querySelector('.slider__btn-active');
+
+// console.log(images);
 let stringMarkupIMG;
-// async function createMrkp() {
-//   countries.map(async country => {
-//     changeID(country.id);
-//     await fetchImg().then(query => {
-//       const URL = query.data.hits[0].pageURL;
-//       // console.log(URL);
-//       if (country.id === 1) {
-//         arrayOfMarkupIMG.push(
-//           `<img class="slider__image" src="${URL}" alt="${country.name}" loading="lazy">`
-//         );
-//       } else
-//         arrayOfMarkupIMG.push(
-//           `<img class="slider__image is-hidden make-absolute" src="${URL}" alt="${country.name}" loading="lazy">`
-//         );
-//       console.log(arrayOfMarkupIMG);
-//       stringMarkupIMG = arrayOfMarkupIMG.join('');
-//       // return ;
-//     });
-//     sliderImgContainer.innerHTML = stringMarkupIMG;
-//   });
+// async function createMrkp(id) {
+//   const arrayNumber = id - 1;
+//   changeID(id);
+//   // await fetchImg().then(query => {
+//   const URL = query.data.hits[0].pageURL;
+//   stringMarkupIMG = `<img class="slider__image" src="${URL}" alt="${countries[arrayNumber].name}" loading="lazy">`;
+//   // });
+//   sliderImgContainer.innerHTML = stringMarkupIMG;
 // }
-async function startSlider() {
+function startSlider() {
   const markupForSliderBtns = countries
     .map(element => {
       if (element.id === 1) {
@@ -43,11 +33,31 @@ async function startSlider() {
   sliderBtnContainer.innerHTML = markupForSliderBtns;
   sliderImgTitle.innerHTML = countries[0].name;
   countryDescripion.innerHTML = countries[0].description;
+  // createMrkp(0);
   // const
   // await createMrkp();
 }
-// console.log(fetchImg());
+
+function changeSlide(e) {
+  e.preventDefault();
+  const btn = e.target;
+  const activeBtn = document.querySelector('.slider__btn-active');
+  activeBtn.classList.remove('slider__btn-active');
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const arrayNumber = Number(btn.id) - 1;
+  sliderImgTitle.innerHTML = countries[arrayNumber].name;
+  countryDescripion.innerHTML = countries[arrayNumber].description;
+
+  btn.classList.add('slider__btn-active');
+  // console.log(activeBtn);
+  console.log(btn.classList);
+  // createMrkp(btn.id);
+  // sliderImgContainer.innerHTML = countries[btnId].src;
+}
 startSlider();
+sliderBtnContainer.addEventListener('click', changeSlide);
 // const markup = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
 // sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
 // console.log(markup);

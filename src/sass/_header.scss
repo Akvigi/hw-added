@@ -20,8 +20,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 40px;
     color: var(--black-color);
+    font-size: 20px;
+        @media screen and (min-width: 768px) {
+            font-size: 40px;
+        }
 }
 
 .site-logo {
@@ -38,7 +41,11 @@
     // justify-content: space-between;
     &__button {
         color: var(--black-color);
-        font-size: 20px;
+        font-size: 15px;
+        
+            @media screen and (min-width: 768px) {
+                font-size: 20px;
+            }
         background-color: transparent;
     }
     &__item {
@@ -56,12 +63,18 @@
 
 .header__login-btn {
     color: var(--black-color);
-    font-size: 20px;
+    font-size: 15px;
+    @media screen and (min-width: 768px) {
+            font-size: 20px;
+        }
     background-color: transparent;
 }
 
 .header__personal-button {
     color: var(--black-color);
-    font-size: 20px;
+    font-size: 15px;
+    @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
     background-color: transparent;
 }

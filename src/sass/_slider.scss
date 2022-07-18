@@ -15,29 +15,49 @@
 .slider {
     &__title {
         align-self: center;
+        font-size: 15px;
+        @media screen and (min-width: 768px) {
+            padding-left: 30px;
+            font-size: 25px;
+        }
     }
     &__image-title {
-        font-size: 40px;
-        padding-left: 30px;
+        font-size: 20px;
+        padding-top: 5px;
+        // 
+        @media screen and (min-width: 768px) {
+            padding-left: 30px;
+            font-size: 40px;
+        }
     }
     &__btn-container {
         // bottom: 1%;
         // right: 1%;
-        padding-right: 20px;
-        padding-top: 20px;
+        // padding-right: 10px;
+        padding-top: 10px;
+        margin-left: 10px;
+        @media screen and (min-width: 768px) {
+            padding-right: 20px;
+            padding-top: 20px;
+        }
     }
     &__btn {
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
+        @media screen and (min-width: 768px) {
+            width: 20px;
+            height: 20px;
+        }
         background-color: rgb(255, 255, 255);
         &:not(:last-child) {
             margin-right: 10px;
         }
-        &-active,
-        &:hover,
-        &:focus {
+        &-active {
             background-color: rgba(255, 0, 128, 0.753);
-        }            
+        }
+        &:hover  {
+            background-color: rgb(54, 183, 192);
+        }       
     }
     &__overlay-description {
         position: absolute;
@@ -59,18 +79,27 @@
         // position: relative; 
     }
     &__image {
-        width: 800px;
-        height: 450px;
-        
+        width: 200px;
+        @media screen and (min-width: 768px) {
+            width: 400px;
+            height: 225px;
+            }
+        @media screen and (min-width: 768px) {
+            width: 800px;
+            height: 450px;
+        }
     }
     &__title-btns-container {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         position: absolute;
         width: 100%;
-        height: 50px;
+        height: 30px;
         bottom: 0;
-        background-color: rgba(0, 255, 255, 0.664);;
+        background-color: rgba(0, 255, 255, 0.664);
+        @media screen and (min-width: 768px) {
+            height: 50px;
+        }
     }
 }
 
