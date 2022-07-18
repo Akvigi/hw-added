@@ -7,10 +7,9 @@ const sliderBtnContainer = document.querySelector('#slider-btn-container');
 const sliderImgTitle = document.querySelector('#image-title');
 const sliderImgContainer = document.querySelector('#image-container');
 const countryDescripion = document.querySelector('#country-description');
-const activeBtn = document.querySelector('.slider__btn-active');
+const sliderBtnDescription = document.querySelector('#description-btn');
+const globalStyle = document.querySelector('style');
 
-// console.log(images);
-let stringMarkupIMG;
 // async function createMrkp(id) {
 //   const arrayNumber = id - 1;
 //   changeID(id);
@@ -20,6 +19,7 @@ let stringMarkupIMG;
 //   // });
 //   sliderImgContainer.innerHTML = stringMarkupIMG;
 // }
+
 function startSlider() {
   const markupForSliderBtns = countries
     .map(element => {
@@ -33,9 +33,7 @@ function startSlider() {
   sliderBtnContainer.innerHTML = markupForSliderBtns;
   sliderImgTitle.innerHTML = countries[0].name;
   countryDescripion.innerHTML = countries[0].description;
-  // createMrkp(0);
-  // const
-  // await createMrkp();
+  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
 }
 
 function changeSlide(e) {
@@ -49,15 +47,25 @@ function changeSlide(e) {
   const arrayNumber = Number(btn.id) - 1;
   sliderImgTitle.innerHTML = countries[arrayNumber].name;
   countryDescripion.innerHTML = countries[arrayNumber].description;
-
+  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[arrayNumber].src}" alt="${countries[arrayNumber].name}">`;
   btn.classList.add('slider__btn-active');
-  // console.log(activeBtn);
-  console.log(btn.classList);
-  // createMrkp(btn.id);
-  // sliderImgContainer.innerHTML = countries[btnId].src;
 }
+
+function openDescription() {
+  globalStyle.innerHTML =
+    '.slider__overlay-description {transform: translateX(0%);}' +
+    '.slider__btn-description {background-color: tomato';
+  sliderBtnDescription.innerHTML = 'close description';
+  sliderBtnDescription.removeEventListener('click', openDescription);
+  sliderBtnDescription.addEventListener('click', closeDescription);
+}
+
+function closeDescription() {
+  globalStyle.innerHTML = '';
+  sliderBtnDescription.innerHTML = 'open description';
+  sliderBtnDescription.addEventListener('click', openDescription);
+}
+
 startSlider();
 sliderBtnContainer.addEventListener('click', changeSlide);
-// const markup = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
-// sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
-// console.log(markup);
+sliderBtnDescription.addEventListener('click', openDescription);

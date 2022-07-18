@@ -42,10 +42,9 @@
     &__button {
         color: var(--black-color);
         font-size: 15px;
-        
-            @media screen and (min-width: 768px) {
-                font-size: 20px;
-            }
+        @media screen and (min-width: 768px) {
+            font-size: 20px;
+        }
         background-color: transparent;
     }
     &__item {
