@@ -21,6 +21,7 @@ const globalStyle = document.querySelector('style');
 // }
 
 function startSlider() {
+  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
   const markupForSliderBtns = countries
     .map(element => {
       if (element.id === 1) {
@@ -33,7 +34,7 @@ function startSlider() {
   sliderBtnContainer.innerHTML = markupForSliderBtns;
   sliderImgTitle.innerHTML = countries[0].name;
   countryDescripion.innerHTML = countries[0].description;
-  sliderImgContainer.innerHTML = `<img class="slider__image" src="${countries[0].src}" alt="${countries[0].name}">`;
+  globalStyle.innerHTML = '.slider__image {opacity: 1;}';
 }
 
 function changeSlide(e) {
@@ -55,14 +56,15 @@ function openDescription() {
   globalStyle.innerHTML =
     '.slider__overlay-description {transform: translateX(0%);}' +
     '.slider__btn-description {background-color: tomato';
-  sliderBtnDescription.innerHTML = 'close description';
+  sliderBtnDescription.innerHTML = 'Close description';
   sliderBtnDescription.removeEventListener('click', openDescription);
   sliderBtnDescription.addEventListener('click', closeDescription);
 }
 
 function closeDescription() {
-  globalStyle.innerHTML = '';
-  sliderBtnDescription.innerHTML = 'open description';
+  globalStyle.innerHTML =
+    '.slider__overlay-description {}' + '.slider__btn-description {}';
+  sliderBtnDescription.innerHTML = 'Open description';
   sliderBtnDescription.addEventListener('click', openDescription);
 }
 
