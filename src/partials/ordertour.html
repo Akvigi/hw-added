@@ -1,8 +1,8 @@
 <section class="order-section" id="order-section">
+    <h1 class="is-hidden">Order cheap tour</h1>
     <div class = "order-slider" id="slider">
         <h1 class="slider__title">Available country tours</h1> 
         <div id="image-container" class="slider__image-container">
-            <!-- <img class="slider__image" src="./images/ukraine.jpg" alt="Ukraine" loading="lazy"> -->
         </div>
         <div class="slider__overlay-description">
             <p class="description" id="country-description"></p>
@@ -11,7 +11,6 @@
         <div class="slider__title-btns-container">
             <h2 class = "slider__image-title" id="image-title"></h2>
             <div class = "slider__btn-container" id="slider-btn-container">
-                    <!-- <button class="slider__btn"></button> -->
             </div>
         </div>
         <button class="slider__btn-description" id="description-btn">Open discription</button>
@@ -29,12 +28,17 @@
         <ul class="available-country-list" id="country-list">
         </ul>
         <form class = "ordertour-confirmation__container is-hidden make-absolute" id="order-form-confirmation">
-            <h2 class="ordertour-confirmation__title"></h2>
+            <h2 class="ordertour-confirmation__title" id="picked-country-name"></h2>
             <p class="ordertour-confirmation__price"></p>
+            <span class="is-hidden" id="picked-country-id"></span>
 
             <p class="ordertour-confirmation__text">Pick start of the trip</p>
             <input class="ordertour-confirmation__time-picker" type="text" id="datetime-picker">
             
             <button class="ordertour-confirmation__button-submit" type="submit">Trip</button>
         </form>
+        <div class="order-final__container is-hidden make-absolute" id="final-container">
+            <h2 id="final-title"></h2>
+            <p id="final-text"></p>
+        </div>
 </section>

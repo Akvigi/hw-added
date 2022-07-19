@@ -1,4 +1,5 @@
 import { replaceBlock, ifLocalStorageIsNull } from './common';
+import { countries } from './country-array';
 
 const cabinetName = document.querySelector('#cab-name');
 const changeNameBtn = document.querySelector('#change-name');
@@ -11,6 +12,8 @@ const changeLocationForm = document.querySelector('#form-change-location');
 const cabinetMoney = document.querySelector('#cab-money');
 const changeMoneyBtn = document.querySelector('#change-money');
 const changeMoneyForm = document.querySelector('#form-change-money');
+
+const orderedList = document.querySelector('#ordered-tours-list');
 
 function openUpdateNameForm(e) {
   e.preventDefault();
@@ -87,6 +90,20 @@ ifLocalStorageIsNull(
   'location'
 );
 ifLocalStorageIsNull('USERMONEY', cabinetMoney, changeMoneyBtn, 'money');
+
+if (
+  localStorage.getItem('TOUR') !== null &&
+  localStorage.getItem('TOUR') !== ''
+) {
+  const storageInfo = localStorage.getItem('TOUR');
+  const tourObject = JSON.parse(storageInfo);
+  const { name, price, id, date } = tourObject;
+
+  orderedList.innerHTML = `<li class="ordered__tour">
+      <img src = ${countries[id].src} alt = '${countries[id].name}' width = 100%>
+      <p class = 'ordered__text' >Your ordered tour to ${name} planned on ${date}. Tour price = ${price}</p>
+    </li>`;
+}
 
 changeNameBtn.addEventListener('click', openUpdateNameForm);
 changeNameForm.addEventListener('submit', updateName);

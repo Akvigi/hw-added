@@ -8,25 +8,33 @@ import { replaceBlock, visibilityChange } from './common';
 
 const countryList = document.querySelector('#country-list');
 const startOrderBtn = document.querySelector('#start-btn');
+
 const formOrder = document.querySelector('#form-order');
 const textToUserMoney = document.querySelector(
   '#text-with-current-money-input'
 );
 const textToUserLocation = document.querySelector('#text-location-label');
-// text-location-label
 const inputMoney = formOrder.children[1];
 const inputCurrentLocation = formOrder.children[3];
+
 const inputTime = document.querySelector('#datetime-picker');
 const formOrderConfirmation = document.querySelector(
   '#order-form-confirmation'
 );
+const confirmationCountryName = formOrderConfirmation.children[0];
+const confirmationCountryPrice = formOrderConfirmation.children[1];
+const confirmationCountryID = formOrderConfirmation.children[2];
+
+const finalContainer = document.querySelector('#final-container');
+const finalTitle = document.querySelector('#final-title');
+const finalText = document.querySelector('#final-text');
 
 let userName;
 let userLocation;
 let userCredits;
 let markup;
 let availableCountries;
-
+let pickedTime;
 function onStartOrder() {
   userName = localStorage.getItem('USERNAME');
   if (userName === '' || userName === null) {
@@ -120,29 +128,49 @@ function pickCountry(e) {
   visibilityChange('show', formOrderConfirmation);
   countryList.innerHTML = '';
   countryList.classList.add('make-absolute');
-  const countryName = formOrderConfirmation.children[0];
-  const countryPrice = formOrderConfirmation.children[1];
-  countryName.innerHTML = countries[countryID - 1].name;
-  countryPrice.innerHTML = countries[countryID - 1].price;
+  confirmationCountryName.innerHTML = countries[countryID - 1].name;
+  confirmationCountryPrice.innerHTML = countries[countryID - 1].price;
+  confirmationCountryID.innerHTML = countries[countryID - 1].id;
   changeSliderMarkup(countryID - 1);
   changeActiveButton(countryID - 1);
-}
-
-function confirmationFormSubmit(e) {
-  e.preventDefault();
-  console.log('confirmationFormSubmit');
 }
 
 flatpickr(inputTime, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
+  // dateFormat: 'Y-m-d-h',
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-    let currentDate = new Date();
+    const currentDate = new Date();
+    if (selectedDates[0] < currentDate) {
+      return alert('Please pick a valid date');
+    }
+    let changedDate = selectedDates[0].toString().split(' ');
+    let fixDate = changedDate.slice(0, 5).join(' ');
+    pickedTime = fixDate;
   },
 });
+
+function confirmationFormSubmit(e) {
+  e.preventDefault();
+  const countryObject = {
+    name: confirmationCountryName.textContent,
+    price: confirmationCountryPrice.textContent,
+    id: confirmationCountryID.textContent,
+    date: pickedTime,
+  };
+  if (pickedTime === undefined) {
+    return alert('Please select date');
+  }
+  localStorage.setItem('TOUR', JSON.stringify(countryObject));
+  replaceBlock(formOrderConfirmation, finalContainer);
+  userCredits =
+    Number(localStorage.getItem('USERMONEY')) - Number(countryObject.price);
+  localStorage.setItem('USERMONEY', userCredits);
+  finalTitle.innerHTML = `${userName}, your tour to ${countryObject.name} cost ${countryObject.price}. It starting on ${countryObject.date}.`;
+  finalText.innerHTML = `You can check your ordered tours in personal cabinet. Your balance - ${userCredits}.`;
+}
 
 countryList.addEventListener('click', pickCountry);
 startOrderBtn.addEventListener('click', onStartOrder);

@@ -84,3 +84,19 @@
         }
     }
 }
+
+.ordered{
+    &__list {
+        margin-top: 20px;
+    }
+    &__tour {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 531px;
+    }
+    &__text{
+        // margin-left: 10px;
+    }
+}
