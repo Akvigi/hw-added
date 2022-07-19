@@ -24,6 +24,7 @@ function onLogout() {
   localStorage.removeItem('PASSWORD');
   localStorage.removeItem('USERMONEY');
   localStorage.removeItem('USERLOCATION');
+  localStorage.removeItem('TOUR');
   alert(`Successfully log out, good luck!`);
 }
 
