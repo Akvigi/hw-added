@@ -2,18 +2,10 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { countries } from './country-array';
 import { changeSliderMarkup, changeActiveButton } from './slider';
-// Замовлення турів:
-// Пишемо реєстрацію користувача за допомогою prompt.  Окремо логін та пароль.
-// Валідацію не потрібно робити.
-// Аналогічно пишемо логінізацію: запитуємо логін та пароль, порівнюємо їх з даними,
-// які були введені при авторизації.Якщо все вірно - виводимо в консоль, що логін успішний.
-// Якщо ні - знову запитуємо логін та пароль.
-// Запитуємо максимальну суму, яку готовий витратити користувач на тур.
-// Виводимо список усіх країн в alert, які доступні по сумі для користувача.
-// Вказуємо країну через prompt  і купляємо тур.
+import { replaceBlock, visibilityChange } from './common';
+
 // Виводимо повідомлення, що тур оплачений і залишок на рахунку користувача.
 
-// const form = document.querySelector('#form');
 const countryList = document.querySelector('#country-list');
 const startOrderBtn = document.querySelector('#start-btn');
 const formOrder = document.querySelector('#form-order');
@@ -37,13 +29,10 @@ let availableCountries;
 
 function onStartOrder() {
   userName = localStorage.getItem('USERNAME');
-  if (userName === '' || userName === undefined || userName === null) {
+  if (userName === '' || userName === null) {
     return alert('Please login!');
   }
-  startOrderBtn.classList.add('is-hidden');
-  startOrderBtn.classList.add('make-absolute');
-  formOrder.classList.remove('is-hidden');
-  formOrder.classList.remove('make-absolute');
+  replaceBlock(startOrderBtn, formOrder);
   if (
     localStorage.getItem('USERMONEY') !== '' &&
     localStorage.getItem('USERMONEY') !== null
@@ -72,6 +61,10 @@ function filterByMoney(input) {
     userCredits = input;
     localStorage.setItem('USERMONEY', userCredits);
     availableCountries = countries.filter(value => value.price <= userCredits);
+  }
+  if (input < 100 && localStorage.getItem('USERMONEY') < 100) {
+    visibilityChange('show', startOrderBtn);
+    return alert('Not enough money to buy tour!');
   }
 }
 
@@ -112,8 +105,7 @@ function submitMoney(e) {
   filterByMoney(inputMoney.value);
   manageUserLocation(inputCurrentLocation.value);
   createCountryCardsMarkup(availableCountries);
-  formOrder.classList.add('is-hidden');
-  formOrder.classList.add('make-absolute');
+  visibilityChange('hide', formOrder);
   countryList.innerHTML = markup;
 }
 
@@ -125,14 +117,20 @@ function pickCountry(e) {
   console.log(e.target.nodeName);
   const { target: buttonCountry } = e;
   const countryID = buttonCountry.dataset.id;
-  formOrderConfirmation.classList.remove('is-hidden');
-  formOrderConfirmation.classList.remove('make-absolute');
+  visibilityChange('show', formOrderConfirmation);
   countryList.innerHTML = '';
   countryList.classList.add('make-absolute');
-  formOrderConfirmation.children[0].innerHTML = countries[countryID - 1].name;
-  formOrderConfirmation.children[1].innerHTML = countries[countryID - 1].price;
+  const countryName = formOrderConfirmation.children[0];
+  const countryPrice = formOrderConfirmation.children[1];
+  countryName.innerHTML = countries[countryID - 1].name;
+  countryPrice.innerHTML = countries[countryID - 1].price;
   changeSliderMarkup(countryID - 1);
   changeActiveButton(countryID - 1);
+}
+
+function confirmationFormSubmit(e) {
+  e.preventDefault();
+  console.log('confirmationFormSubmit');
 }
 
 flatpickr(inputTime, {
@@ -149,3 +147,4 @@ flatpickr(inputTime, {
 countryList.addEventListener('click', pickCountry);
 startOrderBtn.addEventListener('click', onStartOrder);
 formOrder.addEventListener('submit', submitMoney);
+formOrderConfirmation.addEventListener('submit', confirmationFormSubmit);

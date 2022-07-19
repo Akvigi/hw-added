@@ -1,5 +1,5 @@
 import { cabinetBtn } from './header';
-
+import { replaceBlock } from './common';
 const loginBtn = document.querySelector('#login-btn');
 const logoutBtn = document.querySelector('#logout-btn');
 const modalLogin = document.querySelector('.modal-login');
@@ -17,10 +17,7 @@ function onClose() {
 }
 
 function onLogout() {
-  loginBtn.classList.remove('is-hidden');
-  loginBtn.classList.remove('make-absolute');
-  logoutBtn.classList.add('make-absolute');
-  logoutBtn.classList.add('is-hidden');
+  replaceBlock(logoutBtn, loginBtn);
   cabinetBtn.classList.add('is-hidden');
   cabinetBtn.classList.add('make-absolute');
   localStorage.removeItem('USERNAME');
@@ -39,11 +36,8 @@ function onSubmitLogin(e) {
   localStorage.setItem('PASSWORD', password.value);
   username.value = '';
   password.value = '';
+  replaceBlock(loginBtn, logoutBtn);
   modalLogin.classList.add('is-hidden');
-  loginBtn.classList.add('is-hidden');
-  logoutBtn.classList.remove('is-hidden');
-  loginBtn.classList.add('make-absolute');
-  logoutBtn.classList.remove('make-absolute');
   cabinetBtn.classList.remove('make-absolute');
   cabinetBtn.classList.remove('is-hidden');
   alert(`Successfully logged in, thanks!`);
@@ -58,6 +52,5 @@ if (
   localStorage.getItem('USERNAME') !== '' &&
   localStorage.getItem('USERNAME') !== null
 ) {
-  loginBtn.classList.add('is-hidden');
-  logoutBtn.classList.remove('is-hidden');
+  replaceBlock(loginBtn, logoutBtn);
 }

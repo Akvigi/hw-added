@@ -9,16 +9,6 @@ const countryDescripionPrice = document.querySelector('#overlay-price');
 const sliderBtnDescription = document.querySelector('#description-btn');
 const globalStyle = document.querySelector('style');
 
-// async function createMrkp(id) {
-//   const arrayNumber = id - 1;
-//   changeID(id);
-//   // await fetchImg().then(query => {
-//   const URL = query.data.hits[0].pageURL;
-//   stringMarkupIMG = `<img class="slider__image" src="${URL}" alt="${countries[arrayNumber].name}" loading="lazy">`;
-//   // });
-//   sliderImgContainer.innerHTML = stringMarkupIMG;
-// }
-
 function startSlider() {
   const markupForSliderBtns = countries
     .map(element => {
@@ -34,7 +24,6 @@ function startSlider() {
 }
 
 function changeSlide(e) {
-  // e.preventDefault();
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
