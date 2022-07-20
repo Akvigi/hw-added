@@ -139,7 +139,7 @@ flatpickr(inputTime, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
-  // dateFormat: 'Y-m-d-h',
+  dateFormat: 'Y.m.d, h:m:s',
   minuteIncrement: 1,
   onClose(selectedDates) {
     const currentDate = new Date();
