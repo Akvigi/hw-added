@@ -15,7 +15,7 @@
         </div>
         <button class="slider__btn-description" id="description-btn">Open discription</button>
     </div>
-        <button class = "tour-btn" type="button" id="start-btn">
+        <button class = "solo-button tour-btn" type="button" id="start-btn">
             Buy tour
         </button>
         <form action="submit" class="order-form is-hidden make-absolute" id="form-order">
@@ -28,14 +28,14 @@
         <ul class="available-country-list" id="country-list">
         </ul>
         <form class = "ordertour-confirmation__container is-hidden make-absolute" id="order-form-confirmation">
-            <h2 class="ordertour-confirmation__title" id="picked-country-name"></h2>
-            <p class="ordertour-confirmation__price"></p>
-            <span class="is-hidden" id="picked-country-id"></span>
+            <h2 class="ordertour-confirmation__title is-hidden make-absolute" id="picked-country-name"></h2>
+            <p class="ordertour-confirmation__price is-hidden make-absolute"></p>
+            <span class="is-hidden make-absolute" id="picked-country-id"></span>
 
             <p class="ordertour-confirmation__text">Pick start of the trip</p>
             <input class="ordertour-confirmation__time-picker" type="text" id="datetime-picker">
             
-            <button class="ordertour-confirmation__button-submit" type="submit">Trip</button>
+            <button class="solo-button ordertour-confirmation__button-submit" type="submit">Trip</button>
         </form>
         <div class="order-final__container is-hidden make-absolute" id="final-container">
             <h2 id="final-title"></h2>

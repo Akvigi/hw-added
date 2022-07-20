@@ -30,13 +30,7 @@
 }
 
 .tour-btn {
-    width: 150px;
-    font-size: 30px;
-    padding: 10px;
-    border: 2px blue solid;
-    border-radius: 14px;
-    color: black;
-    background-color: transparent;
+    
 }
 
 .available-country-list {
@@ -47,7 +41,6 @@
     max-width: 868px;
     // padding: 0 40px;
     // margin: 0 auto;
-
 }
 
 .country-list{
@@ -81,22 +74,23 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-
     }
     &__text {
-        margin-top: 30px;
+        margin-top: 5px;
     }
     &__time-picker {
         box-sizing: border-box;
-        max-width: 173px;
+        max-width: 131px;
         margin-top: 5px;
         margin-bottom: 20px;
         padding-left: 30px;
     }
     &__button-submit {
-        border: 2px burlywood solid;
-        border-radius: 5px;
-        background-color: transparent;
-        padding: 5px 10px;
+        // border: 2px rgb(224, 135, 18) solid;
+        // border-radius: 5px;
+        // background-color: transparent;
+        // padding: 5px 10px;
+        padding: 10px 20px;
+        max-width: 100px;
     }
 }

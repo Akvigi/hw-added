@@ -136,10 +136,10 @@ function pickCountry(e) {
 }
 
 flatpickr(inputTime, {
-  enableTime: true,
+  enableTime: false,
   time_24hr: true,
   defaultDate: new Date(),
-  dateFormat: 'Y.m.d, h:m:s',
+  dateFormat: 'Y.m.d',
   minuteIncrement: 1,
   onClose(selectedDates) {
     const currentDate = new Date();
@@ -147,7 +147,7 @@ flatpickr(inputTime, {
       return alert('Please pick a valid date');
     }
     let changedDate = selectedDates[0].toString().split(' ');
-    let fixDate = changedDate.slice(0, 5).join(' ');
+    let fixDate = changedDate.slice(0, 4).join(' ');
     pickedTime = fixDate;
   },
 });
